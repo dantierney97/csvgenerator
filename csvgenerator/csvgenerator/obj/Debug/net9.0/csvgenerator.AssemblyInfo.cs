@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("csvgenerator")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dcab298143c6d0e94104cbc3dd186cc5ad697a54")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+550759242cbb5a5b8f74e5ac6cd58c035140963b")]
 [assembly: System.Reflection.AssemblyProductAttribute("csvgenerator")]
 [assembly: System.Reflection.AssemblyTitleAttribute("csvgenerator")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

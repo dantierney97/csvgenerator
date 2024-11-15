@@ -6,6 +6,7 @@ class Program
     {
         
         bool newDataset = false;
+        string userInput = "userinput";
 
         while (!newDataset)
         {
@@ -18,27 +19,26 @@ class Program
             Console.WriteLine("Welcome to CSV generator!\n" +
                               "This application will help you to generate new datasets in the .cvs file format.\n" +
                               "To begin, please confirm that you wish to create a new dataset ( Y / N )\n");
-
-            string userInput = "userinput";
         
             try
             {
                 userInput = Console.ReadLine();
-            }
-            catch (exception e)
+            } // End try
+            catch (Exception e)
             {
                 Console.WriteLine(e.Message as string);
-            }
-
-            if (userInput == "userinput") continue;
-            if (userInput is "Y" or "y")
+            } // End Catch
+            
+            // If statement checks that userInput is not default value and
+            // that userInput shows user wants to continue with the program
+            if (userInput != "userinput" && userInput is "y" or "Y")
             {
                 newDataset = true;
-            }
-        }
+            } // End If
+        } // End While Loop (newDataset)
 
         
 
 
-    }
-}
+    } // End Main
+} // End Namespace program

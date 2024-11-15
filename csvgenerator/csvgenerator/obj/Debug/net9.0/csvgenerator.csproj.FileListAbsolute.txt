@@ -1,0 +1,15 @@
+/Users/dant/Documents/GitHub/csvgenerator/csvgenerator/csvgenerator/obj/Debug/net9.0/csvgenerator.GeneratedMSBuildEditorConfig.editorconfig
+/Users/dant/Documents/GitHub/csvgenerator/csvgenerator/csvgenerator/obj/Debug/net9.0/csvgenerator.AssemblyInfoInputs.cache
+/Users/dant/Documents/GitHub/csvgenerator/csvgenerator/csvgenerator/obj/Debug/net9.0/csvgenerator.AssemblyInfo.cs
+/Users/dant/Documents/GitHub/csvgenerator/csvgenerator/csvgenerator/obj/Debug/net9.0/csvgenerator.csproj.CoreCompileInputs.cache
+/Users/dant/Documents/GitHub/csvgenerator/csvgenerator/csvgenerator/obj/Debug/net9.0/csvgenerator.sourcelink.json
+/Users/dant/Documents/GitHub/csvgenerator/csvgenerator/csvgenerator/bin/Debug/net9.0/csvgenerator
+/Users/dant/Documents/GitHub/csvgenerator/csvgenerator/csvgenerator/bin/Debug/net9.0/csvgenerator.deps.json
+/Users/dant/Documents/GitHub/csvgenerator/csvgenerator/csvgenerator/bin/Debug/net9.0/csvgenerator.runtimeconfig.json
+/Users/dant/Documents/GitHub/csvgenerator/csvgenerator/csvgenerator/bin/Debug/net9.0/csvgenerator.dll
+/Users/dant/Documents/GitHub/csvgenerator/csvgenerator/csvgenerator/bin/Debug/net9.0/csvgenerator.pdb
+/Users/dant/Documents/GitHub/csvgenerator/csvgenerator/csvgenerator/obj/Debug/net9.0/csvgenerator.dll
+/Users/dant/Documents/GitHub/csvgenerator/csvgenerator/csvgenerator/obj/Debug/net9.0/refint/csvgenerator.dll
+/Users/dant/Documents/GitHub/csvgenerator/csvgenerator/csvgenerator/obj/Debug/net9.0/csvgenerator.pdb
+/Users/dant/Documents/GitHub/csvgenerator/csvgenerator/csvgenerator/obj/Debug/net9.0/csvgenerator.genruntimeconfig.cache
+/Users/dant/Documents/GitHub/csvgenerator/csvgenerator/csvgenerator/obj/Debug/net9.0/ref/csvgenerator.dll
