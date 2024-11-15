@@ -11,8 +11,26 @@ class Program
         
         // Opening console output to explain the program
         Console.WriteLine("Welcome to CSV generator!\n" +
-                          "This application will help you to generate new datasets in the .cvs file format.\n");
+                          "This application will help you to generate new datasets in the .cvs file format.\n" +
+                          "To begin, please confirm that you wish to create a new dataset\n");
+
+        string userInput = "userinput";
+        try
+        {
+            userInput = Console.ReadLine();
+        }
+        catch (exception e)
+        {
+            Console.WriteLine(e.Message as string);
+        }
+
+        if (userInput != "userinput")
+        {
+            
+        }
+
         
-        
+
+
     }
 }
