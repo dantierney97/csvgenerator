@@ -93,7 +93,7 @@ class Program
             NameGenerator names = new NameGenerator();
             
             // Call generate name method
-            names.generateNames(dataQuant);
+            names.GenerateNames(dataQuant);
 
             break;
 
