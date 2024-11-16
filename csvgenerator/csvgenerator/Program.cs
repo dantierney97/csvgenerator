@@ -94,7 +94,9 @@ class Program
             
             // Call generate name method
             names.generateNames(dataQuant);
-            
+
+            break;
+
         } // End of While Loop
 
     } // End of Main
