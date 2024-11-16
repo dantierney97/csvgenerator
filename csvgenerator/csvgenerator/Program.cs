@@ -89,6 +89,12 @@ class Program
             
             if (selConf is "n" or "N") break; // If user selects n, moves onto next data section
             
+            // Initialise NameGenerator
+            NameGenerator names = new NameGenerator();
+            
+            // Call generate name method
+            names.generateNames(dataQuant);
+            
         } // End of While Loop
 
     } // End of Main
