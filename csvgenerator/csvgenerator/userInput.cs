@@ -4,7 +4,7 @@ public class Userinput
 {
     public T UserInput<T>()
     {
-        T input = default; // Initialise with default value for T
+        T input; // Initialise with default value for T
 
         while (true)
         {
@@ -15,7 +15,7 @@ public class Userinput
                 if (typeof(T) == typeof(string))
                 {
                     // Directly cast to T if T is string
-                    return (T)(object)userInput!;
+                    return (T)(object)userInput;
                 } // End if
 
                 // Convert the string input to type T
