@@ -78,6 +78,18 @@ class Program
             if (selConf is "Y" or "y") break;
 
         } // End of While Loop
+        
+        // Loop asks user if they want names in the data set
+        while (true)
+        {
+            Console.WriteLine("Would you like names in your dataset? [Y / N ]");
+            
+            // Input exceptions are handled through this method
+            selConf = i.UserInput<string>();
+            
+            if (selConf is "n" or "N") break; // If user selects n, moves onto next data section
+            
+        } // End of While Loop
 
     } // End of Main
 } // End of Namespace program
