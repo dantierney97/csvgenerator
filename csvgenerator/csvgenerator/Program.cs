@@ -6,7 +6,7 @@ class Program
     {
         
         bool newDataset = false;
-        string userInput = "userinput";
+        string uI = "userinput";
 
         while (!newDataset)
         {
@@ -22,20 +22,20 @@ class Program
         
             try
             {
-                userInput = Console.ReadLine()!;
+                uI = Console.ReadLine()!;
             } // End of try
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
             } // End of Catch
             
-            // If statement checks that userInput is not default value and
-            // that userInput shows user wants to continue with the program
-            if (userInput != "userinput" && userInput is "y" or "Y")
+            // If statement checks that uI is not default value and
+            // that uI shows user wants to continue with the program
+            if (uI != "uI" && uI is "y" or "Y")
             {
                 newDataset = true;
             } // End of If
-            else if (userInput is "n" or "N")
+            else if (uI is "n" or "N")
             {
                 Console.WriteLine("No dataset needed, application is closing!");
                 break; // Ends loop and the program is the user selects N
@@ -51,15 +51,31 @@ class Program
 
         // ----- Dataset Generator starts here -----
 
+        // Initialise UserInput object to receive user input
+        // This class deals with the exception handling of the input
+        // which will reduce the number of try/catch blocks in this code
+        Userinput i = new Userinput();
+
         // Variables for user selection information
         int dataQuant;
+        string selConf; // String for selection confirmation
 
         Console.Clear();
         Console.WriteLine("How many data entries would you like to generate?");
         while (true)
         {
-            
+            dataQuant = i.UserInput<int>();
+
+            Console.WriteLine("You have chosen to generate {0} data entries.\n" +
+                              "Is this correct? [ Y / N ]", dataQuant );
+
+            selConf = i.UserInput<string>();
+
+            if (selConf is "Y" or "y") break;
+
         } // End of While Loop
+        
+        
 
 
     } // End of Main

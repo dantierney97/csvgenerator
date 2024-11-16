@@ -25,10 +25,16 @@ public class Userinput
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-                Console.WriteLine("Please try again.");
+                Console.WriteLine("Invalid input; Please try again.");
             } // End of Catch
         } // End of While Loop
 
         return input;
     } // End of UserInput Method
+
+    // Destructor
+    ~Userinput()
+    {
+        throw new NotImplementedException();
+    }
 } // End of UserInput Class
