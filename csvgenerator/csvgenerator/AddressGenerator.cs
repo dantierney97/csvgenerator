@@ -10,9 +10,9 @@ public class AddressGenerator
     private List<string> _postcode = new List<string>();
     
     // Get methods to allow other classes to use the address segments
-    public List<string> getHouseName(){ return _houseName; }
-    public List<string> getStreetName(){ return _streetName; }
-    public List<string> getCity(){ return _city; }
-    public List<string> getCounty(){ return _county; }
-    public List<string> getPostcode(){ return _postcode; }
+    public List<string> GetHouseName(){ return _houseName; }
+    public List<string> GetStreetName(){ return _streetName; }
+    public List<string> GetCity(){ return _city; }
+    public List<string> GetCounty(){ return _county; }
+    public List<string> GetPostcode(){ return _postcode; }
 }
