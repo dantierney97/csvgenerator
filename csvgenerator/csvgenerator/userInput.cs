@@ -21,14 +21,14 @@ public class Userinput
                 // Convert the string input to type T
                 input = (T)Convert.ChangeType(userInput, typeof(T));
                 break;
-            } // End Try
+            } // End of Try
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
                 Console.WriteLine("Please try again.");
-            } // End Catch
-        } // End While Loop
+            } // End of Catch
+        } // End of While Loop
 
         return input;
-    } // End UserInput
-}
+    } // End of UserInput Method
+} // End of UserInput Class

@@ -23,39 +23,44 @@ class Program
             try
             {
                 userInput = Console.ReadLine()!;
-            } // End try
+            } // End of try
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-            } // End Catch
+            } // End of Catch
             
             // If statement checks that userInput is not default value and
             // that userInput shows user wants to continue with the program
             if (userInput != "userinput" && userInput is "y" or "Y")
             {
                 newDataset = true;
-            } // End If
+            } // End of If
             else if (userInput is "n" or "N")
             {
                 Console.WriteLine("No dataset needed, application is closing!");
                 break; // Ends loop and the program is the user selects N
-            } // End else if
+            } // End of else if
             else
             {
                 // Asks user to try again if the input isn't an expected outcome
                 Console.Clear();
                 Console.WriteLine("Invalid input, please try again."); 
-            } // End else
+            } // End of else
             
-        } // End While Loop (newDataset)
+        } // End of While Loop (newDataset)
 
         // ----- Dataset Generator starts here -----
 
         // Variables for user selection information
         int dataQuant;
-        
-        
-        
 
-    } // End Main
-} // End Namespace program
+        Console.Clear();
+        Console.WriteLine("How many data entries would you like to generate?");
+        while (true)
+        {
+            
+        } // End of While Loop
+
+
+    } // End of Main
+} // End of Namespace program
