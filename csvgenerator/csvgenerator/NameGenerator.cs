@@ -14,12 +14,58 @@ public class NameGenerator
     // Method will generate names based on quantity specified by user
     public void generateNames(int quantity)
     {
+        Random rnd = new Random(); // Initialise a RNG
+        
+        // Variables to hold selected names ready for concatenation
+        bool barrel = false;
+        string forename;
+        string hyphenate = null;
+        string surname;
+        string fullname;
         // For loop will generate the list of names for the user
         // Loop will run until the quantity limit is reached
         for (int i = 0; i < quantity; i++)
         {
+            // Selects forename from array
+            forename = forenames[rnd.Next(0, forenames.Length)];
             
+            //Decides whether surname will be double barrelled
+            if (rnd.Next(0, 5) == 4)
+            {
+                hyphenate = surnames[rnd.Next(0, surnames.Length)]; // Selects surname for double barrel
+                barrel = true; // sets barrel to true for concat
+            } // End of if
+            else
+            {
+                barrel = false; // sets barrel to false for no concat
+            } // End of else
+            
+            // selects surname from array
+
+            // If a double barrel name has been selected, it will be addded to the end of the following selection
+            if (barrel)
+            {
+                surname = surnames[rnd.Next(0, surnames.Length)] + "-" + hyphenate;
+            } // End of If
+            // If a double barrel name was not selected, a surname is generated as normal
+            else
+            {
+                surname = surnames[rnd.Next(0, surnames.Length)];
+            } // End of Else
+            
+            // merge two names together for the full name
+            fullname = forename + " " + surname;
+            
+            // Output name to console for DEBUG
+            Console.WriteLine(fullname);
+            
+            // Add name to names list
+            names.Add(fullname);
         } // End of For Loop
+        
+        // Confirm to user the number of names that have been generated
+        Console.WriteLine("The number of names generated is: {0}", names.Count);
+        
     } // End of generateNames
     
     
