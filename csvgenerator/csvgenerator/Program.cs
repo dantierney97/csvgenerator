@@ -8,6 +8,7 @@ class Program
         bool newDataset = false;
         string uI = "userinput";
 
+        // Loop asks user if they want to generate a data set
         while (!newDataset)
         {
             Console.WriteLine("Hello, World!");
@@ -47,7 +48,7 @@ class Program
                 Console.WriteLine("Invalid input, please try again."); 
             } // End of else
             
-        } // End of While Loop (newDataset)
+        } // End of While Loop
 
         // ----- Dataset Generator starts here -----
 
@@ -57,10 +58,11 @@ class Program
         Userinput i = new Userinput();
 
         // Variables for user selection information
-        int dataQuant;
-        string selConf; // String for selection confirmation
+        int dataQuant;      // Stores the number of data entries required
+        string selConf;     // String for selection confirmation
 
         Console.Clear();
+        // Loop asks user how many data entries they would like to generate
         while (true)
         {
             
@@ -76,9 +78,6 @@ class Program
             if (selConf is "Y" or "y") break;
 
         } // End of While Loop
-        
-        
-
 
     } // End of Main
 } // End of Namespace program
