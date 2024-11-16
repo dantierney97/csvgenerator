@@ -55,7 +55,7 @@ class Program
         // Initialise UserInput object to receive user input
         // This class deals with the exception handling of the input
         // which will reduce the number of try/catch blocks in this code
-        Userinput i = new Userinput();
+        UserInput i = new UserInput();
 
         // Variables for user selection information
         int dataQuant;      // Stores the number of data entries required
@@ -68,12 +68,12 @@ class Program
             
             Console.WriteLine("How many data entries would you like to generate?");
             
-            dataQuant = i.UserInput<int>();
+            dataQuant = i.Input<int>();
 
             Console.WriteLine("You have chosen to generate {0} data entries.\n" +
                               "Is this correct? [ Y / N ]", dataQuant );
 
-            selConf = i.UserInput<string>();
+            selConf = i.Input<string>();
 
             if (selConf is "Y" or "y") break;
 
@@ -85,7 +85,7 @@ class Program
             Console.WriteLine("Would you like names in your dataset? [Y / N ]");
             
             // Input exceptions are handled through this method
-            selConf = i.UserInput<string>();
+            selConf = i.Input<string>();
             
             if (selConf is "n" or "N") break; // If user selects n, moves onto next data section
             

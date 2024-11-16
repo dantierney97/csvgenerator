@@ -1,8 +1,8 @@
 namespace csvgenerator;
 
-public class Userinput
+public class UserInput
 {
-    public T UserInput<T>()
+    public T Input<T>()
     {
         T input; // Initialise with default value for T
 
@@ -33,7 +33,7 @@ public class Userinput
     } // End of UserInput Method
 
     // Destructor
-    ~Userinput()
+    ~UserInput()
     {
         throw new NotImplementedException();
     }
