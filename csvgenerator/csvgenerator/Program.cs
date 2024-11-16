@@ -35,6 +35,17 @@ class Program
             {
                 newDataset = true;
             } // End If
+            else if (userInput is "n" or "N")
+            {
+                Console.WriteLine("No dataset needed, application is closing!");
+                break; // Ends loop and the program is the user selects N
+            } // End else if
+            else
+            {
+                // Asks user to try again if the input isnt an expected outcome
+                Console.WriteLine("Invalid input, please try again."); 
+            } // End else
+            
         } // End While Loop (newDataset)
 
         
