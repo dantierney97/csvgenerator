@@ -61,9 +61,11 @@ class Program
         string selConf; // String for selection confirmation
 
         Console.Clear();
-        Console.WriteLine("How many data entries would you like to generate?");
         while (true)
         {
+            
+            Console.WriteLine("How many data entries would you like to generate?");
+            
             dataQuant = i.UserInput<int>();
 
             Console.WriteLine("You have chosen to generate {0} data entries.\n" +
