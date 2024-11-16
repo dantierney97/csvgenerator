@@ -22,11 +22,11 @@ class Program
         
             try
             {
-                userInput = Console.ReadLine();
+                userInput = Console.ReadLine()!;
             } // End try
             catch (Exception e)
             {
-                Console.WriteLine(e.Message as string);
+                Console.WriteLine(e.Message);
             } // End Catch
             
             // If statement checks that userInput is not default value and
@@ -42,14 +42,20 @@ class Program
             } // End else if
             else
             {
-                // Asks user to try again if the input isnt an expected outcome
+                // Asks user to try again if the input isn't an expected outcome
+                Console.Clear();
                 Console.WriteLine("Invalid input, please try again."); 
             } // End else
             
         } // End While Loop (newDataset)
 
-        
+        // ----- Dataset Generator starts here -----
 
+        // Variables for user selection information
+        int dataQuant;
+        
+        
+        
 
     } // End Main
 } // End Namespace program
