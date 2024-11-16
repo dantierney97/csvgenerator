@@ -9,11 +9,16 @@ public class NameGenerator
     public List<string> getNames()
     {
         return names;
-    }
+    } // End of getNames
 
     // Method will generate names based on quantity specified by user
     public void generateNames(int quantity)
     {
-        
-    }
+        // For loop will generate the list of names for the user
+        // Loop will run until the quantity limit is reached
+        for (int i = 0; i < quantity; i++)
+        {
+            
+        } // End of For Loop
+    } // End of generateNames
 } // End of Class
