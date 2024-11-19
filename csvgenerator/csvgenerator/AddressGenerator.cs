@@ -61,7 +61,13 @@ public class AddressGenerator
     // Array of street suffixes
     private static readonly string[] StreetSuffixes = 
     { 
-        "Street", "Avenue", "Road", "Lane", "Close", "Drive", 
+        // Suffixes with high weight
+        "Street", "Street", "Street", "Street", "Street",
+        "Road", "Road", "Road", "Road", "Road",
+        "Close", "Close", "Close", "Close", "Close",
+        
+        // Suffixes with low weight
+        "Avenue", "Lane", "Drive", 
         "Place", "Court", "Square", "Way", "Terrace", "Crescent" 
     };
 
