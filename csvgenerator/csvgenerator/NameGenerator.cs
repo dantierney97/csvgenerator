@@ -98,7 +98,8 @@ public class NameGenerator
         // Tell the user that the names have been created successfully
         timer.Stop();
         _debug.Write("Names Generated Successfully", LogLevel.Info);
-        _debug.Write($"Time taken: {timer.Elapsed}", LogLevel.Info);
+        TimeSpan duration = timer.Elapsed;
+        _debug.Write($"Time taken: {duration.TotalMilliseconds}ms", LogLevel.Info);
         
     } // End of generateNames
     
