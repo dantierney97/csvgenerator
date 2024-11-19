@@ -12,7 +12,7 @@ public class CheckDuplicates
     }
     
     // Count Duplicates method
-    public Dictionary<T, int> CountDuplicates<T>(List<T> list) where T : notnull
+    public int CountDuplicates<T>(List<T> list) where T : notnull
     {
         // New dictionary to store every unique value and its count
         var duplicates = new Dictionary<T, int>();
@@ -32,8 +32,19 @@ public class CheckDuplicates
             } // End of else
         } // End of foreach
 
-        return duplicates; // returns the dictionary
-        
+        // Perameter for counting number of duplicates
+        int count = 0;
+        foreach (var duplicate in duplicates)
+        {
+            // Any entry with a value of 2 or more will be output to console
+            if (duplicate.Value >= 2) 
+            {
+                count++;
+            } // End of if
+        } // End foreach
+
+        return count;
+
     } // End of CountDuplicates
 
     // Deconstructor

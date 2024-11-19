@@ -79,21 +79,10 @@ public class NameGenerator
         var d = serviceProvider.GetService<CheckDuplicates>();
         
         // Counts duplicate names
-        Dictionary<string, int> duplicates = d.CountDuplicates(_names);
-        
-        // Iterate through dictionary and count the number of duplicates
-        int count = 0;
-        foreach (var entry in duplicates) // Iterates through every entry in duplicates
-        {
-            // Any entry with a value of 2 or more will be output to console
-            if (entry.Value >= 2) 
-            {
-                count++;
-            } // End of if
-        } // End of foreach
+        int duplicates = d.CountDuplicates(_names);
         
         // Output duplicate quantity to debug
-        _debug.Write($"Number of duplicate names: {count}", LogLevel.Info);
+        _debug.Write($"Number of duplicate names: {duplicates}", LogLevel.Info);
         
         // Tell the user that the names have been created successfully
         timer.Stop();
