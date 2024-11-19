@@ -64,8 +64,11 @@ public class NameGenerator
         // Confirm to user the number of names that have been generated
         Console.WriteLine("The number of names generated is: {0}", _names.Count);
         
+        // New CheckDuplicates created
+        CheckDuplicates d = new CheckDuplicates();
+        
         // Counts duplicate names
-        Dictionary<string, int> duplicates = CountDuplicates(_names);
+        Dictionary<string, int> duplicates = d.CountDuplicates(_names);
         
         // Iterate through dictionary and show user ever name that shows up more than once
         Console.WriteLine("Here is a list of any duplicate values:\n");
@@ -79,31 +82,6 @@ public class NameGenerator
         } // End of foreach
         
     } // End of generateNames
-    
-    // Method checks for duplicate values
-    public static Dictionary<T, int> CountDuplicates<T>(List<T> list) where T : notnull
-    {
-        // New dictionary to store every unique value and its count
-        var duplicates = new Dictionary<T, int>();
-
-        // Loop to iterate through every item in the given list
-        foreach (var item in list)
-        {
-            // Adds 1 to the value if entry repeats
-            if (duplicates.ContainsKey(item))
-            {
-                duplicates[item]++;
-            } // End of if
-            // sets value to 1 on first instance of value
-            else
-            {
-                duplicates[item] = 1;
-            } // End of else
-        } // End of foreach
-
-        return duplicates; // returns the dictionary
-    } // End of CountDuplicates
-    
     
     // First name array used for name generation
     private readonly string[] _forenames =

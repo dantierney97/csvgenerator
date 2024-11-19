@@ -10,7 +10,7 @@ public class CheckDuplicates
     }
     
     // Count Duplicates method
-    public static Dictionary<T, int> CountDuplicates<T>(List<T> list) where T : notnull
+    public Dictionary<T, int> CountDuplicates<T>(List<T> list) where T : notnull
     {
         // New dictionary to store every unique value and its count
         var duplicates = new Dictionary<T, int>();
