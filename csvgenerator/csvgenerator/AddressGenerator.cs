@@ -36,4 +36,33 @@ public class AddressGenerator
         return houseNumber;
     }
 
+    // Method generates a list of street names
+    private List<string> GenerateStreetName(int quant)
+    {
+        
+        List<string> streetName = new List<string>();
+        
+        return streetName;
+    }
+    
+    // Array of street prefixes
+    private static readonly string[] StreetPrefixes = 
+    { 
+        "High", "Church", "Station", "Park", "Victoria", "King", 
+        "Queen", "Market", "Green", "North", "South", "London", 
+        "Oxford", "Baker", "Cambridge", "York", "Chester", "Bridge",
+        "West", "East", "St. George's", "St. John's", "Regent", "Fleet", 
+        "Piccadilly", "Cannon", "Tower", "Castle", "Clarence", "Albion",
+        "Hill", "Elm", "Rose", "River", "Mill", "Broad", "Windsor", 
+        "New", "Old", "Abbey", "Spring", "Garden", "Holly", "Maple", 
+        "Willow", "Saxon", "Derby", "Lancaster", "Kensington", "Hampstead"
+    };
+    
+    // Array of street suffixes
+    private static readonly string[] StreetSuffixes = 
+    { 
+        "Street", "Avenue", "Road", "Lane", "Close", "Drive", 
+        "Place", "Court", "Square", "Way", "Terrace", "Crescent" 
+    };
+
 }
