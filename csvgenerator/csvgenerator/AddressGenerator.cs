@@ -42,6 +42,32 @@ public class AddressGenerator
         
         List<string> streetName = new List<string>();
         
+        Random rnd = new Random();
+
+        // Variables for generation
+        string prefix;
+        string suffix;
+        string street;
+
+        for (int i = 0; i < quant; i++)
+        {
+            // Generates a street prefix
+            prefix = StreetPrefixes[rnd.Next(0, StreetPrefixes.Length)];
+            
+            // Generates a street suffix
+            suffix = StreetSuffixes[rnd.Next(0, StreetSuffixes.Length)];
+
+            // Concatenate Strings to create a complete street name
+            street = prefix + " " + suffix;
+            
+            // Debug output to console
+            Console.WriteLine(street);
+            
+            // Add street name to list
+            streetName.Add(street);
+        }
+        
+        // Returns list to main method in class
         return streetName;
     }
     
