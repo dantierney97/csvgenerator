@@ -109,7 +109,7 @@ class Program
             var names = serviceProvider.GetService<NameGenerator>();
             
             // Call generate name method
-            names.GenerateNames(dataQuant);
+            names.GenerateNames(dataQuant, serviceProvider); // Passes quantity & Service Collection to class
 
             break;
 

@@ -4,8 +4,10 @@ public class CheckDuplicates
 {
 
     // Constructor
-    public CheckDuplicates()
+    private readonly IDebugLog _debug;
+    public CheckDuplicates(IDebugLog debug)
     {
+        _debug = debug;
         Console.WriteLine("Duplicate checker created");
     }
     

@@ -1,3 +1,5 @@
+using Microsoft.Extensions.DependencyInjection;
+
 namespace csvgenerator;
 
 public class NameGenerator
@@ -19,7 +21,7 @@ public class NameGenerator
     } // End of getNames
 
     // Method will generate names based on quantity specified by user
-    public void GenerateNames(int quantity)
+    public void GenerateNames(int quantity, ServiceProvider serviceProvider)
     {
         Random rnd = new Random(); // Initialise a RNG
         
@@ -61,18 +63,18 @@ public class NameGenerator
             // merge two names together for the full name
             var fullname = forename + " " + surname;
             
-            // Output name to console for DEBUG
-            Console.WriteLine(fullname);
+            // Output name to Debug
+            _debug.Write(fullname, LogLevel.Info);
             
             // Add name to names list
             _names.Add(fullname);
         } // End of For Loop
         
         // Confirm to user the number of names that have been generated
-        Console.WriteLine("The number of names generated is: {0}", _names.Count);
+        _debug.Write($"The number of names generated is: {_names.Count}", LogLevel.Info);
         
         // New CheckDuplicates created
-        CheckDuplicates d = new CheckDuplicates();
+        var d = serviceProvider.GetService<CheckDuplicates>();
         
         // Counts duplicate names
         Dictionary<string, int> duplicates = d.CountDuplicates(_names);
