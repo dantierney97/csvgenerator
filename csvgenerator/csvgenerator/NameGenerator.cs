@@ -80,6 +80,7 @@ public class NameGenerator
         Dictionary<string, int> duplicates = d.CountDuplicates(_names);
         
         // Iterate through dictionary and show user ever name that shows up more than once
+        int count = 0;
         Console.WriteLine("Here is a list of any duplicate values:\n");
         foreach (var entry in duplicates) // Iterates through every entry in duplicates
         {
@@ -87,8 +88,12 @@ public class NameGenerator
             if (entry.Value >= 2) 
             {
                 Console.WriteLine($"Item: {entry.Key}, Count: {entry.Value}");
+                count++;
             } // End of if
         } // End of foreach
+        
+        // Output duplicate quantity to debug
+        _debug.Write($"Number of duplicate names: {count}", LogLevel.Info);
         
     } // End of generateNames
     
