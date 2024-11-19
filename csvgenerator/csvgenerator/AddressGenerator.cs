@@ -2,6 +2,13 @@ namespace csvgenerator;
 
 public class AddressGenerator
 {
+
+    private readonly IDebugLog _debug;
+
+    public AddressGenerator(IDebugLog debug)
+    {
+        _debug = debug;
+    }
     // This class will generate several lists that hold sections of a complete address
     private List<string> _houseNumber = new List<string>();
     private List<string> _streetName = new List<string>();

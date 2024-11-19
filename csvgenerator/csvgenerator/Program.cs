@@ -1,4 +1,6 @@
-﻿namespace csvgenerator;
+﻿using Microsoft.Extensions.DependencyInjection;
+
+namespace csvgenerator;
 
 class Program
 {
@@ -7,6 +9,16 @@ class Program
         
         // ----- DEPENDANCY INJECTION SECTION -----
         
+        // Setting up the DI Container
+
+        var serviceProvider = new ServiceCollection()
+            .AddSingleton<IDebugLog>(provider => new DebugLog())
+            // Add to classes here --->
+            .AddTransient<AddressGenerator>()   // Allows AddressGenerator to use debugger
+            .AddTransient<NameGenerator>()      // Allows NameGenerator to use debugger 
+            .AddTransient<CheckDuplicates>()    // Allows CheckDuplicates to use debugger
+            .AddTransient<UserInput>()          // Allows UserInput to use debugger    
+            .BuildServiceProvider();
         // ----- END OF DEPENDANCY INJECTION -----
         
         bool newDataset = false;

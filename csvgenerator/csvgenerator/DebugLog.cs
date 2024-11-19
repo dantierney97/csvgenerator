@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 namespace csvgenerator;
 
 // Enum holds log levels for use by the logger
@@ -37,7 +39,7 @@ public class DebugLog : IDebugLog
         // Write message to file
         File.AppendAllText(_filePath, logMessage + Environment.NewLine);
         // Write message to console
-        Console.WriteLine(logMessage); // Optional: Log to console as well
+        Debug.WriteLine(logMessage);
     } // End of Write
 
     // Deconstructor
