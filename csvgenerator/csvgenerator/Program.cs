@@ -106,7 +106,7 @@ class Program
             if (selConf is "n" or "N") break; // If user selects n, moves onto next data section
             
             // Initialise NameGenerator
-            NameGenerator names = new NameGenerator();
+            var names = serviceProvider.GetService<NameGenerator>();
             
             // Call generate name method
             names.GenerateNames(dataQuant);

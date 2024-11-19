@@ -13,3 +13,7 @@
 /Users/dant/Documents/GitHub/csvgenerator/csvgenerator/csvgenerator/obj/Debug/net9.0/csvgenerator.pdb
 /Users/dant/Documents/GitHub/csvgenerator/csvgenerator/csvgenerator/obj/Debug/net9.0/csvgenerator.genruntimeconfig.cache
 /Users/dant/Documents/GitHub/csvgenerator/csvgenerator/csvgenerator/obj/Debug/net9.0/ref/csvgenerator.dll
+/Users/dant/Documents/GitHub/csvgenerator/csvgenerator/csvgenerator/bin/Debug/net9.0/Microsoft.Extensions.DependencyInjection.dll
+/Users/dant/Documents/GitHub/csvgenerator/csvgenerator/csvgenerator/bin/Debug/net9.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll
+/Users/dant/Documents/GitHub/csvgenerator/csvgenerator/csvgenerator/obj/Debug/net9.0/csvgenerator.csproj.AssemblyReference.cache
+/Users/dant/Documents/GitHub/csvgenerator/csvgenerator/csvgenerator/obj/Debug/net9.0/csvgener.2BD4BE24.Up2Date

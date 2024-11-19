@@ -17,18 +17,26 @@ public interface IDebugLog
 // DebugLog class that handles logging debug information
 public class DebugLog : IDebugLog
 {
-    private readonly string _filePath = "log.txt";
+    
+    // private readonly string _filePath = "log" + $"{DateTime.Now:yyyy-MM-dd HH:mm:ss}" + ".txt";
+    private static readonly string Dir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), 
+        "CSVGenerator");
+
+    private static readonly string File = "log" + $"{DateTime.Now:yyyy-MM-dd HHmmss}" + ".txt";
+    
+    private static readonly string FilePath = Path.Combine(Dir, File);
     // Constructor
     public DebugLog()
     {
-        Console.WriteLine("Debug Log created.");
-        
         // Check if the file exists and clears it when logger is created
 
-        if (File.Exists(_filePath))
+        if (!Directory.Exists(Dir))
         {
-            File.WriteAllText(_filePath, string.Empty);
-        } // End of If
+            Directory.CreateDirectory(Dir);
+            Write("Debugger Started, Directory Created", LogLevel.Warning);
+        }
+        else {Write("Debugger Started", LogLevel.Info);}
+        
     } // End of Constructor
     
     // Write method writes debug message to log and console
@@ -37,7 +45,7 @@ public class DebugLog : IDebugLog
         // Construct full log message
         string logMessage = $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} [{level}] - {message}";
         // Write message to file
-        File.AppendAllText(_filePath, logMessage + Environment.NewLine);
+        System.IO.File.AppendAllText(FilePath, logMessage + Environment.NewLine);
         // Write message to console
         Debug.WriteLine(logMessage);
     } // End of Write
@@ -45,7 +53,7 @@ public class DebugLog : IDebugLog
     // Deconstructor
     ~DebugLog()
     {
-        Console.WriteLine("Debug Log destroyed.");
+        Write("Debugger Destroyed", LogLevel.Warning);
     } // End of Deconstructor
     
 } // End of DebugLog class
