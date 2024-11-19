@@ -90,6 +90,9 @@ public class NameGenerator
         // Output duplicate quantity to debug
         _debug.Write($"Number of duplicate names: {count}", LogLevel.Info);
         
+        // Tell the user that the names have been created successfully
+        _debug.Write("Names Generated Successfully", LogLevel.Info);
+        
     } // End of generateNames
     
     // First name array used for name generation
