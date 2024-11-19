@@ -8,7 +8,7 @@ public class CheckDuplicates
     public CheckDuplicates(IDebugLog debug)
     {
         _debug = debug;
-        Console.WriteLine("Duplicate checker created");
+        _debug.Write("Duplicate checker created", LogLevel.Info);
     }
     
     // Count Duplicates method
@@ -32,6 +32,19 @@ public class CheckDuplicates
             } // End of else
         } // End of foreach
 
+        int numOfDuplicates = 0;
+        foreach (var duplicate in duplicates)
+        {
+            if (duplicate.Value > 1)
+            {
+                numOfDuplicates++;
+            } // End of IF
+            
+        } // End of foreach
+        
+        // Output duplicate quantity to debug
+        _debug.Write($"Number of duplicate names: {numOfDuplicates}", LogLevel.Info);
+
         return duplicates; // returns the dictionary
         
     } // End of CountDuplicates
@@ -39,7 +52,7 @@ public class CheckDuplicates
     // Deconstructor
     ~CheckDuplicates()
     {
-        Console.WriteLine("Duplicate checker destroyed");
+        _debug.Write("Duplicate checker destroyed", LogLevel.Warning);
     }
     
 } // End of CheckDuplicates Class
