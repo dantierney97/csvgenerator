@@ -19,8 +19,6 @@ class Program
             .AddTransient<CheckDuplicates>()    // Allows CheckDuplicates to use debugger
             .AddTransient<UserInput>()          // Allows UserInput to use debugger    
             .BuildServiceProvider();
-
-        var nameGenerator = serviceProvider.GetRequiredService<NameGenerator>();
         // ----- END OF DEPENDANCY INJECTION -----
         
         bool newDataset = false;
@@ -106,6 +104,7 @@ class Program
         // Runs if user wants Name Data
         if (selConf is "y" or "Y")
         {
+            var nameGenerator = serviceProvider.GetRequiredService<NameGenerator>();
             // Call generate name method
             nameGenerator.GenerateNames(dataQuant); // Passes quantity & Service Collection to class
         } // End of If
@@ -119,7 +118,7 @@ class Program
         if (selConf is "Y" or "y")
         {
             // Gets AddressGenerator from a ServiceCollection
-            var address = serviceProvider.GetService<AddressGenerator>();
+            var address = serviceProvider.GetRequiredService<AddressGenerator>();
             // Generates Address Data
             address.GenerateAddress(dataQuant);
         } // End of If
