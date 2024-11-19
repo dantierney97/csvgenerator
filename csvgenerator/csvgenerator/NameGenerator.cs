@@ -63,9 +63,6 @@ public class NameGenerator
             // merge two names together for the full name
             var fullname = forename + " " + surname;
             
-            // Output name to Debug
-            _debug.Write(fullname, LogLevel.Info);
-            
             // Add name to names list
             _names.Add(fullname);
         } // End of For Loop
@@ -79,15 +76,13 @@ public class NameGenerator
         // Counts duplicate names
         Dictionary<string, int> duplicates = d.CountDuplicates(_names);
         
-        // Iterate through dictionary and show user ever name that shows up more than once
+        // Iterate through dictionary and count the number of duplicates
         int count = 0;
-        Console.WriteLine("Here is a list of any duplicate values:\n");
         foreach (var entry in duplicates) // Iterates through every entry in duplicates
         {
             // Any entry with a value of 2 or more will be output to console
             if (entry.Value >= 2) 
             {
-                Console.WriteLine($"Item: {entry.Key}, Count: {entry.Value}");
                 count++;
             } // End of if
         } // End of foreach
