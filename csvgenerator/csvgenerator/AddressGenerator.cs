@@ -39,7 +39,7 @@ public class AddressGenerator
     // Method generates a list of street names
     private List<string> GenerateStreetName(int quant)
     {
-        
+        // Local list to store generated information
         List<string> streetName = new List<string>();
         
         Random rnd = new Random();
@@ -49,6 +49,7 @@ public class AddressGenerator
         string suffix;
         string street;
 
+        // Loop creates street names based on number required from user
         for (int i = 0; i < quant; i++)
         {
             // Generates a street prefix
