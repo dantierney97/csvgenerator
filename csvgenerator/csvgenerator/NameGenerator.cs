@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace csvgenerator;
@@ -25,6 +26,10 @@ public class NameGenerator
     {
         Random rnd = new Random(); // Initialise a RNG
         
+        // Create a stopwatch to measure performance
+        Stopwatch timer = new Stopwatch();
+        
+        timer.Start();
         
         // For loop will generate the list of names for the user
         // Loop will run until the quantity limit is reached
@@ -91,7 +96,9 @@ public class NameGenerator
         _debug.Write($"Number of duplicate names: {count}", LogLevel.Info);
         
         // Tell the user that the names have been created successfully
+        timer.Stop();
         _debug.Write("Names Generated Successfully", LogLevel.Info);
+        _debug.Write($"Time taken: {timer.Elapsed}", LogLevel.Info);
         
     } // End of generateNames
     
