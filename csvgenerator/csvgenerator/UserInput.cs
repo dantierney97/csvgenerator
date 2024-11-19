@@ -2,6 +2,12 @@ namespace csvgenerator;
 
 public class UserInput
 {
+
+    // Constructor
+    public UserInput()
+    {
+        Console.WriteLine("UserInput created.");
+    }
     public T Input<T>()
     {
         T input; // Initialise with default value for T
