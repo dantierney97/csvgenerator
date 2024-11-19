@@ -7,11 +7,12 @@ public class AddressGenerator
 {
 
     private readonly IDebugLog _debug;
-    private IServiceProvider serviceProvider;
+    private IServiceProvider _serviceProvider;
 
-    public AddressGenerator(IDebugLog debug)
+    public AddressGenerator(IDebugLog debug, IServiceProvider serviceProvider)
     {
         _debug = debug;
+        _serviceProvider = serviceProvider;
     }
     // This class will generate several lists that hold sections of a complete address
     private List<string> _houseNumber = new List<string>();
@@ -28,10 +29,8 @@ public class AddressGenerator
     public List<string> GetPostcode() { return _postcode; }
 
     // Method called by external classes to generate an address
-    public void GenerateAddress(int quant, ServiceProvider serviceProvider)
+    public void GenerateAddress(int quant)
     {
-        
-        serviceProvider = serviceProvider;
         // Stopwatch to time performance
         Stopwatch timer = new Stopwatch();
         timer.Start();
@@ -91,7 +90,7 @@ public class AddressGenerator
         } // End of For
         
         // Count number of street duplicates
-        var dupCheck = serviceProvider.GetService<CheckDuplicates>();
+        var dupCheck = _serviceProvider.GetService<CheckDuplicates>();
         int duplicates = dupCheck.CountDuplicates(streetName);
         _debug.Write($"Number of duplicate Street Names: {duplicates}", LogLevel.Warning);
         
