@@ -34,6 +34,8 @@ public class CheckDuplicates
 
         // Perameter for counting number of duplicates
         int count = 0;
+        
+        // Counts the number of entries with a value of 2 or higher
         foreach (var duplicate in duplicates)
         {
             // Any entry with a value of 2 or more will be output to console

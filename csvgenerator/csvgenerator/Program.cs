@@ -95,25 +95,36 @@ class Program
 
         } // End of While Loop
         
-        // Loop asks user if they want names in the data set
-        while (true)
+        // Asks user if they want names in the data set
+        Console.WriteLine("Would you like names in your dataset? [Y / N ]");
+            
+        // Input exceptions are handled through this method
+        selConf = i.Input<string>();
+
+        // Runs if user wants Name Data
+        if (selConf is "y" or "Y")
         {
-            Console.WriteLine("Would you like names in your dataset? [Y / N ]");
-            
-            // Input exceptions are handled through this method
-            selConf = i.Input<string>();
-            
-            if (selConf is "n" or "N") break; // If user selects n, moves onto next data section
-            
-            // Initialise NameGenerator
+            // Gets NameGenerator from a ServiceCollection
             var names = serviceProvider.GetService<NameGenerator>();
             
             // Call generate name method
             names.GenerateNames(dataQuant, serviceProvider); // Passes quantity & Service Collection to class
+        } // End of If
+        
+        // Asks User if they want Address Data
+        Console.WriteLine("Would you like Address information in your dataset? [Y / N ]");
+        
+        selConf = i.Input<string>();
 
-            break;
-
-        } // End of While Loop
+        // Runs if user wants address data
+        if (selConf is "Y" or "y")
+        {
+            // Gets AddressGenerator from a ServiceCollection
+            var address = serviceProvider.GetService<AddressGenerator>();
+            // Generates Address Data
+            address.GenerateAddress(dataQuant, serviceProvider);
+        } // End of If
+        
 
     } // End of Main
 } // End of Namespace program
