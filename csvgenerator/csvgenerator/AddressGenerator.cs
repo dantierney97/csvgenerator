@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.Text.Json;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace csvgenerator;
@@ -269,6 +270,63 @@ public class AddressGenerator
          { "Huddersfield", "West Yorkshire" },
          { "Swindon", "Wiltshire" } 
      }; // End of Dictionary
+     
+     // Method to generate a postcode using postcodes.io by providing a partial postcode
+     private async Task<List<string>> GeneratePostcode(int quant)
+     {
+         List<string> postcodes = new List<string>();
+
+         return postcodes;
+     }
+     
+     // Method calls opensource API to get the rest of a postcode returned
+     
+     private static readonly HttpClient _client = new HttpClient();
+
+     private async Task<string> GetPostcode(string partial)
+     {
+         string postcode = null;
+         string apiAddress = $"https://api.postcodes.io/postcodes/{partial}/autocomplete";
+         
+         // Call the API
+         try
+         {
+             
+             // API Call
+             var response = await _client.GetStringAsync(apiAddress);
+             
+             // Deserialise JSON
+             using var JsonDoc = JsonDocument.Parse(response);
+             var root = JsonDoc.RootElement;
+             
+             // Check status of response
+             if (root.GetProperty("status").GetInt32() != 200)
+             {
+                 _debug.Write($"API Call Failed. Check Partial Postcode: {partial}", LogLevel.Error);
+                 postcode = "NULL";
+                 return postcode;
+             } // End of If
+
+             List<string> postcodes = new List<string>();
+             
+             // Parse returned information
+             foreach (var result in root.GetProperty("result").EnumerateArray())
+             {
+                 // Addds the postcode to the list
+                 postcodes.Add(result.ToString());
+             } // End of foreach
+
+         } // End of Try
+         catch (Exception e)
+         {
+             Console.WriteLine(e);
+             _debug.Write($"{e}", LogLevel.Error);
+             _debug.Write($"{e.Message}", LogLevel.Error);
+             throw;
+         } // End of Catch
+
+         return postcode;
+     }
 
 
      // Dictionary to hold Cities and towns, and some random postcodes from that area
