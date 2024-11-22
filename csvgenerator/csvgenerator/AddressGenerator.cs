@@ -8,7 +8,7 @@ public class AddressGenerator
 {
 
     private readonly IDebugLog _debug;
-    private IServiceProvider _serviceProvider;
+    private readonly IServiceProvider _serviceProvider;
 
     public AddressGenerator(IDebugLog debug, IServiceProvider serviceProvider)
     {
@@ -60,6 +60,7 @@ public class AddressGenerator
         _streetName = GenerateStreetName(quant);
         _city = GenerateCity(quant);
         _county = GenerateCounty(quant);
+        _postcode = GeneratePostcode(quant);
 
         timer.Stop();
         TimeSpan speed = timer.Elapsed;
@@ -92,21 +93,18 @@ public class AddressGenerator
         Random rnd = new Random();
 
         // Variables for generation
-        string prefix;
-        string suffix;
-        string street;
 
         // Loop creates street names based on number required from user
         for (int i = 0; i < quant; i++)
         {
             // Generates a street prefix
-            prefix = StreetPrefixes[rnd.Next(0, StreetPrefixes.Length)];
+            var prefix = StreetPrefixes[rnd.Next(0, StreetPrefixes.Length)];
 
             // Generates a street suffix
-            suffix = StreetSuffixes[rnd.Next(0, StreetSuffixes.Length)];
+            var suffix = StreetSuffixes[rnd.Next(0, StreetSuffixes.Length)];
 
             // Concatenate Strings to create a complete street name
-            street = prefix + " " + suffix;
+            var street = prefix + " " + suffix;
 
             // Add street name to list
             streetName.Add(street);
@@ -114,8 +112,11 @@ public class AddressGenerator
 
         // Count number of street duplicates
         var dupCheck = _serviceProvider.GetService<CheckDuplicates>();
-        int duplicates = dupCheck.CountDuplicates(streetName);
-        _debug.Write($"Number of duplicate Street Names: {duplicates}", LogLevel.Warning);
+        if (dupCheck != null)
+        {
+            int duplicates = dupCheck.CountDuplicates(streetName);
+            _debug.Write($"Number of duplicate Street Names: {duplicates}", LogLevel.Warning);
+        }
 
         // Returns list to main method in class
         _debug.Write("Street Names have been generated", LogLevel.Info);
@@ -124,7 +125,7 @@ public class AddressGenerator
 
     // Array of street prefixes
     private static readonly string[] StreetPrefixes =
-    {
+    [
         "High", "Church", "Station", "Park", "Victoria", "King",
         "Queen", "Market", "Green", "North", "South", "London",
         "Oxford", "Baker", "Cambridge", "York", "Chester", "Bridge",
@@ -133,11 +134,11 @@ public class AddressGenerator
         "Hill", "Elm", "Rose", "River", "Mill", "Broad", "Windsor",
         "New", "Old", "Abbey", "Spring", "Garden", "Holly", "Maple",
         "Willow", "Saxon", "Derby", "Lancaster", "Kensington", "Hampstead"
-    };
+    ];
 
     // Array of street suffixes
     private static readonly string[] StreetSuffixes =
-    {
+    [
         // Suffixes with high weight
         "Street", "Street", "Street", "Street", "Street",
         "Road", "Road", "Road", "Road", "Road",
@@ -146,7 +147,7 @@ public class AddressGenerator
         // Suffixes with low weight
         "Avenue", "Lane", "Drive",
         "Place", "Court", "Square", "Way", "Terrace", "Crescent"
-    };
+    ];
 
     // Method generates a list of cities
 
@@ -159,7 +160,7 @@ public class AddressGenerator
 
         for (int i = 0; i < quant; i++)
         {
-            city.Add(cities[rnd.Next(0, cities.Length)]);
+            city.Add(_cities[rnd.Next(0, _cities.Length)]);
         } // End of for
         
         // Output to debug log
@@ -170,8 +171,8 @@ public class AddressGenerator
     } // End of GenerateCity
 
     // Array of Cities and Towns
-    string[] cities = new string[]
-    {
+    private readonly string[] _cities =
+    [
         "London", "Birmingham", "Manchester", "Liverpool", "Leeds",
         "Sheffield", "Bristol", "Newcastle upon Tyne", "Nottingham", "Leicester",
         "Southampton", "Portsmouth", "Brighton", "Cambridge", "Oxford",
@@ -182,7 +183,7 @@ public class AddressGenerator
         "Cardiff", "Swansea", "Newport", "Wrexham", "Bangor",
         "Belfast", "Londonderry", "Lisburn", "Newry", "Milton Keynes",
         "Northampton", "Peterborough", "Gloucester", "Huddersfield", "Swindon"
-    }; // End of Array
+    ]; // End of Array
      
      // Method Generates a county based on the city
      private List<string> GenerateCounty(int quant)
@@ -191,7 +192,7 @@ public class AddressGenerator
 
          for (int i = 0; i < quant; i++)
          {
-             counties.Add(cityCountyLookup[_city[i]]);
+             counties.Add(_cityCountyLookup[_city[i]]);
              
              // Check county is correct
              //_debug.Write($"{counties[i]}", LogLevel.Info);
@@ -208,7 +209,7 @@ public class AddressGenerator
      } // End of GenerateCounty
      
      // Dictionary that looks up a city's county
-     Dictionary<string, string> cityCountyLookup = new Dictionary<string, string>
+     readonly Dictionary<string, string> _cityCountyLookup = new Dictionary<string, string>
      {
          // England
          { "London", "Greater London" },
@@ -272,20 +273,38 @@ public class AddressGenerator
      }; // End of Dictionary
      
      // Method to generate a postcode using postcodes.io by providing a partial postcode
-     private async Task<List<string>> GeneratePostcode(int quant)
+     private List<string> GeneratePostcode(int quant)
      {
          List<string> postcodes = new List<string>();
+
+         try
+         {
+             for (int i = 0; i < quant; i++)
+             {
+                 // Using the current value of i, a partial postcode is pulled from cityPostcodeLookup
+                 // based on the city name in the array _city which was generated previously
+                 // This partial postcode is then sent to another method which will return a full Postcode
+                 postcodes.Add(GetPostcode(_cityPostcodeLookup[_city[i]]).ToString()
+                               ?? throw new InvalidOperationException());
+             } // End for
+         }
+         catch (Exception e)
+         {
+             _debug.Write(e.ToString(), LogLevel.Error);
+             _debug.Write(e.Message, LogLevel.Error);
+             
+         }
 
          return postcodes;
      }
      
      // Method calls opensource API to get the rest of a postcode returned
      
-     private static readonly HttpClient _client = new HttpClient();
+     private static readonly HttpClient Client = new HttpClient();
 
      private async Task<string> GetPostcode(string partial)
      {
-         string postcode = null;
+         string postcode;
          string apiAddress = $"https://api.postcodes.io/postcodes/{partial}/autocomplete";
          
          // Call the API
@@ -293,16 +312,17 @@ public class AddressGenerator
          {
              
              // API Call
-             var response = await _client.GetStringAsync(apiAddress);
+             var response = await Client.GetStringAsync(apiAddress);
              
              // Deserialise JSON
-             using var JsonDoc = JsonDocument.Parse(response);
-             var root = JsonDoc.RootElement;
+             using var jsonDoc = JsonDocument.Parse(response);
+             var root = jsonDoc.RootElement;
              
              // Check status of response
              if (root.GetProperty("status").GetInt32() != 200)
              {
                  _debug.Write($"API Call Failed. Check Partial Postcode: {partial}", LogLevel.Error);
+                 _debug.Write($"API Response: {response}", LogLevel.Error);
                  postcode = "NULL";
                  return postcode;
              } // End of If
@@ -312,16 +332,21 @@ public class AddressGenerator
              // Parse returned information
              foreach (var result in root.GetProperty("result").EnumerateArray())
              {
-                 // Addds the postcode to the list
+                 // Adds the postcode to the list
                  postcodes.Add(result.ToString());
              } // End of foreach
+             
+             // Selects a random postcode from the returned list and returns that to be stored in a list
+             Random rnd = new Random();
+             
+             postcode = postcodes[rnd.Next(0, postcodes.Count)];
 
          } // End of Try
          catch (Exception e)
          {
              Console.WriteLine(e);
-             _debug.Write($"{e}", LogLevel.Error);
-             _debug.Write($"{e.Message}", LogLevel.Error);
+             _debug.Write(e.ToString(), LogLevel.Error);
+             _debug.Write(e.Message, LogLevel.Error);
              throw;
          } // End of Catch
 
@@ -330,7 +355,7 @@ public class AddressGenerator
 
 
      // Dictionary to hold Cities and towns, and some random postcodes from that area
-     private Dictionary<string, string> cityPostcodeLookup = new()
+     private readonly Dictionary<string, string> _cityPostcodeLookup = new()
      {
          // England
          { "London", "E1" },
