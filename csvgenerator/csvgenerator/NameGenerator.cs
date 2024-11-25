@@ -154,4 +154,10 @@ public class NameGenerator
     "Wells", "Schmidt", "Parker", "Patterson", "Webb", "Perez", "Mendez", "Barnes", 
     "Stevens", "Russell", "Stewart", "Collins", "Castro", "Bennett", "Henry"
     ];
+
+    // Finaliser
+    ~NameGenerator()
+    {
+        _debug.Write("NameGenerator destroyed.", LogLevel.Warning);
+    }
 } // End of Class

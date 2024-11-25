@@ -50,7 +50,7 @@ public class DebugLog : IDebugLog
         Debug.WriteLine(logMessage);
     } // End of Write
 
-    // Deconstructor
+    // Finaliser
     ~DebugLog()
     {
         Write("Debugger Destroyed", LogLevel.Warning);

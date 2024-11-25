@@ -40,7 +40,7 @@ public class UserInput
         return input;
     } // End of UserInput Method
 
-    // Destructor
+    // Finaliser
     ~UserInput()
     {
         _debug.Write("UserInput Destroyed", LogLevel.Warning);

@@ -12,6 +12,7 @@ public class DataOrganiser
         _serviceProvider = serviceProvider;
     } // End Constructor
 
+    // Finaliser
     ~DataOrganiser()
     {
         _debug.Write("DataOrganiser destroyed", LogLevel.Warning);

@@ -49,7 +49,7 @@ public class CheckDuplicates
 
     } // End of CountDuplicates
 
-    // Deconstructor
+    // Finaliser
     ~CheckDuplicates()
     {
         _debug.Write("Duplicate checker destroyed", LogLevel.Warning);
