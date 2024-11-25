@@ -71,7 +71,7 @@ class Program
         // Initialise UserInput object to receive user input
         // This class deals with the exception handling of the input
         // which will reduce the number of try/catch blocks in this code
-        UserInput i = new UserInput();
+        UserInput i = serviceProvider.GetRequiredService<UserInput>();
 
         // Variables for user selection information
         int dataQuant;      // Stores the number of data entries required

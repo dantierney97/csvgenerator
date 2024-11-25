@@ -3,9 +3,11 @@ namespace csvgenerator;
 public class UserInput
 {
 
+    private readonly IDebugLog _debug;
     // Constructor
-    public UserInput()
+    public UserInput(IDebugLog debug)
     {
+        _debug = debug;
         Console.WriteLine("UserInput created.");
     }
     public T Input<T>()
@@ -41,6 +43,6 @@ public class UserInput
     // Destructor
     ~UserInput()
     {
-        throw new NotImplementedException();
+        _debug.Write("UserInput Destroyed", LogLevel.Warning);
     }
 } // End of UserInput Class
