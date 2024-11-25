@@ -12,6 +12,22 @@ public class DataOrganiser
         _serviceProvider = serviceProvider;
     } // End Constructor
 
+    private List<List<string>> data;
+
+    public void gatherGeneratedData()
+    {
+        try
+        {
+            data.Add(NameGenerator.GetNames());
+        }
+        catch (Exception e)
+        {
+            _debug.Write(e.ToString(), LogLevel.Error);
+            _debug.Write(e.Message, LogLevel.Error);
+        }
+    }
+    
+
     // Finaliser
     ~DataOrganiser()
     {
