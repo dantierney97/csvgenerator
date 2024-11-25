@@ -418,6 +418,11 @@ public class AddressGenerator
          { "Swindon", "SN1" }
      }; // End of Dictionary 
 
+     ~AddressGenerator()
+     {
+         _debug.Write("AddressGenerator Destroyed", LogLevel.Warning);
+     }
+
 
 
 }
