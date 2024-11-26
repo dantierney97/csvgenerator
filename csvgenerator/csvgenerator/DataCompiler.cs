@@ -2,13 +2,13 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace csvgenerator;
 
-public class DataOrganiser
+public class DataCompiler
 {
 
     private readonly IDebugLog _debug;
     private readonly IServiceProvider _serviceProvider;
 
-    public DataOrganiser(IDebugLog debug, IServiceProvider serviceProvider)
+    public DataCompiler(IDebugLog debug, IServiceProvider serviceProvider)
     {
         _debug = debug;
         _serviceProvider = serviceProvider;
@@ -40,8 +40,8 @@ public class DataOrganiser
     
 
     // Finaliser
-    ~DataOrganiser()
+    ~DataCompiler()
     {
-        _debug.Write("DataOrganiser destroyed", LogLevel.Warning);
+        _debug.Write("DataCompiler destroyed", LogLevel.Warning);
     }
 }

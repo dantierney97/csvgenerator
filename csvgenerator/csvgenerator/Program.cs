@@ -18,12 +18,13 @@ class Program
             .AddTransient<NameGenerator>()      
             .AddTransient<CheckDuplicates>()    
             .AddTransient<UserInput>()    
-            .AddTransient<DataOrganiser>()
+            .AddTransient<DataCompiler>()
             .BuildServiceProvider();
         // ----- END OF DEPENDANCY INJECTION -----
-        
         bool newDataset = false;
         string uI = "userinput";
+        
+        DebugLog debug = serviceProvider.GetRequiredService<DebugLog>();
 
         // Loop asks user if they want to generate a data set
         while (!newDataset)
@@ -124,6 +125,11 @@ class Program
             address.GenerateAddress(dataQuant);
         } // End of If
         
+        // Data Compiler
+        DataCompiler dataCompiler = serviceProvider.GetRequiredService<DataCompiler>();
+        dataCompiler.gatherGeneratedData();
+        debug.Write("All data has been compiled ready for export to CSV file.", LogLevel.Info);
+
 
     } // End of Main
 } // End of Namespace program
