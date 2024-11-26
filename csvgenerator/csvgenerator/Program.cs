@@ -14,10 +14,11 @@ class Program
         var serviceProvider = new ServiceCollection()
             .AddSingleton<IDebugLog>(provider => new DebugLog())
             // Add to classes here --->
-            .AddTransient<AddressGenerator>()   // Allows AddressGenerator to use debugger
-            .AddTransient<NameGenerator>()      // Allows NameGenerator to use debugger 
-            .AddTransient<CheckDuplicates>()    // Allows CheckDuplicates to use debugger
-            .AddTransient<UserInput>()          // Allows UserInput to use debugger    
+            .AddTransient<AddressGenerator>()   
+            .AddTransient<NameGenerator>()      
+            .AddTransient<CheckDuplicates>()    
+            .AddTransient<UserInput>()    
+            .AddTransient<DataOrganiser>()
             .BuildServiceProvider();
         // ----- END OF DEPENDANCY INJECTION -----
         

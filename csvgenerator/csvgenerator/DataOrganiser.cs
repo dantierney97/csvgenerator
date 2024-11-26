@@ -1,3 +1,5 @@
+using Microsoft.Extensions.DependencyInjection;
+
 namespace csvgenerator;
 
 public class DataOrganiser
@@ -18,7 +20,16 @@ public class DataOrganiser
     {
         try
         {
-            data.Add(NameGenerator.GetNames());
+
+            NameGenerator nameGenerator = _serviceProvider.GetRequiredService<NameGenerator>();
+            data.Add(nameGenerator.GetNames());
+            
+            AddressGenerator addressGenerator = _serviceProvider.GetRequiredService<AddressGenerator>();
+            data.Add(addressGenerator.GetHouseNumber());
+            data.Add(addressGenerator.GetStreetName());
+            data.Add(addressGenerator.GetCity());
+            data.Add(addressGenerator.GetCounty());
+            data.Add(addressGenerator.GetPostcode());
         }
         catch (Exception e)
         {
