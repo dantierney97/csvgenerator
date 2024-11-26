@@ -3,7 +3,15 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace csvgenerator;
 
-public class NameGenerator
+public interface INameGenerator
+{
+    
+    void GenerateNames(int quantity);
+    
+    List<string> GetNames();
+}
+
+public class NameGenerator : INameGenerator
 {
 
     private readonly IDebugLog _debug;

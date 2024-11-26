@@ -14,8 +14,9 @@ class Program
         var serviceProvider = new ServiceCollection()
             .AddSingleton<IDebugLog>(provider => new DebugLog())
             // Add to classes here --->
-            .AddTransient<AddressGenerator>()   
-            .AddTransient<NameGenerator>()      
+            .AddTransient<AddressGenerator>()
+            .AddTransient<NameGenerator>()
+            .AddTransient<INameGenerator, NameGenerator>()      
             .AddTransient<CheckDuplicates>()    
             .AddTransient<UserInput>()    
             .AddTransient<DataCompiler>()
@@ -24,7 +25,7 @@ class Program
         bool newDataset = false;
         string uI = "userinput";
         
-        DebugLog debug = serviceProvider.GetRequiredService<DebugLog>();
+        IDebugLog debug = serviceProvider.GetRequiredService<IDebugLog>();
 
         // Loop asks user if they want to generate a data set
         while (!newDataset)

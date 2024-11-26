@@ -7,11 +7,13 @@ public class DataCompiler
 
     private readonly IDebugLog _debug;
     private readonly IServiceProvider _serviceProvider;
+    private readonly INameGenerator _nameGenerator;
 
-    public DataCompiler(IDebugLog debug, IServiceProvider serviceProvider)
+    public DataCompiler(IDebugLog debug, IServiceProvider serviceProvider, INameGenerator nameGenerator)
     {
         _debug = debug;
         _serviceProvider = serviceProvider;
+        _nameGenerator = nameGenerator;
     } // End Constructor
 
     private List<List<string>> data;
@@ -21,8 +23,7 @@ public class DataCompiler
         try
         {
 
-            NameGenerator nameGenerator = _serviceProvider.GetRequiredService<NameGenerator>();
-            data.Add(nameGenerator.GetNames());
+            data.Add(_nameGenerator.GetNames());
             
             AddressGenerator addressGenerator = _serviceProvider.GetRequiredService<AddressGenerator>();
             data.Add(addressGenerator.GetHouseNumber());
