@@ -128,7 +128,7 @@ class Program
         
         // Data Compiler
         DataCompiler dataCompiler = serviceProvider.GetRequiredService<DataCompiler>();
-        dataCompiler.gatherGeneratedData();
+        dataCompiler.GatherGeneratedData();
         debug.Write("All data has been compiled ready for export to CSV file.", LogLevel.Info);
 
 

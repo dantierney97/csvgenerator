@@ -18,7 +18,7 @@ public class DataCompiler
 
     private List<List<string>> data;
 
-    public void gatherGeneratedData()
+    public void GatherGeneratedData()
     {
         try
         {
