@@ -16,7 +16,7 @@ public class DataCompiler
         _nameGenerator = nameGenerator;
     } // End Constructor
 
-    private List<List<string>> data;
+    private List<List<string>> data = new();
 
     public void GatherGeneratedData()
     {
