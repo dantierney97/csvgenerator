@@ -14,9 +14,7 @@ class Program
         var serviceProvider = new ServiceCollection()
             .AddSingleton<IDebugLog>(provider => new DebugLog())
             // Add to classes here --->
-            .AddTransient<AddressGenerator>()
             .AddTransient<IAddressGenerator, AddressGenerator>()
-            .AddTransient<NameGenerator>()
             .AddTransient<INameGenerator, NameGenerator>()      
             .AddTransient<CheckDuplicates>()    
             .AddTransient<UserInput>()    
