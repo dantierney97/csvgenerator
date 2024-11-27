@@ -15,6 +15,7 @@ class Program
             .AddSingleton<IDebugLog>(provider => new DebugLog())
             // Add to classes here --->
             .AddTransient<AddressGenerator>()
+            .AddTransient<IAddressGenerator, AddressGenerator>()
             .AddTransient<NameGenerator>()
             .AddTransient<INameGenerator, NameGenerator>()      
             .AddTransient<CheckDuplicates>()    
@@ -121,7 +122,7 @@ class Program
         if (selConf is "Y" or "y")
         {
             // Gets AddressGenerator from a ServiceCollection
-            var address = serviceProvider.GetRequiredService<AddressGenerator>();
+            var address = serviceProvider.GetRequiredService<IAddressGenerator>();
             // Generates Address Data
             address.GenerateAddress(dataQuant);
         } // End of If

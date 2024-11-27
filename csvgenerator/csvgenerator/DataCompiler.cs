@@ -8,12 +8,15 @@ public class DataCompiler
     private readonly IDebugLog _debug;
     private readonly IServiceProvider _serviceProvider;
     private readonly INameGenerator _nameGenerator;
+    private readonly IAddressGenerator _addressGenerator;
 
-    public DataCompiler(IDebugLog debug, IServiceProvider serviceProvider, INameGenerator nameGenerator)
+    public DataCompiler(IDebugLog debug, IServiceProvider serviceProvider, INameGenerator nameGenerator,
+    IAddressGenerator addressGenerator)
     {
         _debug = debug;
         _serviceProvider = serviceProvider;
         _nameGenerator = nameGenerator;
+        _addressGenerator = addressGenerator;
     } // End Constructor
 
     private List<List<string>> data = new();
@@ -25,12 +28,12 @@ public class DataCompiler
 
             data.Add(_nameGenerator.GetNames());
             
-            AddressGenerator addressGenerator = _serviceProvider.GetRequiredService<AddressGenerator>();
-            data.Add(addressGenerator.GetHouseNumber());
-            data.Add(addressGenerator.GetStreetName());
-            data.Add(addressGenerator.GetCity());
-            data.Add(addressGenerator.GetCounty());
-            data.Add(addressGenerator.GetPostcode());
+            
+            data.Add(_addressGenerator.GetHouseNumber());
+            data.Add(_addressGenerator.GetStreetName());
+            data.Add(_addressGenerator.GetCity());
+            data.Add(_addressGenerator.GetCounty());
+            data.Add(_addressGenerator.GetPostcode());
         }
         catch (Exception e)
         {
