@@ -125,19 +125,41 @@ public class AddressGenerator : IAddressGenerator
         _debug.Write($"Time taken: {speed.Milliseconds}ms", LogLevel.Info);
     }
 
-    // Method generates a list of house numbers
+    /// <summary>
+    /// Generates a list of house numbers as strings.
+    /// </summary>
+    /// <param name="quant">The quantity of house numbers to generate.</param>
+    /// <returns>A list of house numbers as strings, each representing a random number between 1 and 230.</returns>
+    /// <remarks>
+    /// This method uses a <see cref="Random"/> instance to generate house numbers.
+    /// The range for house numbers is from 1 to 230, inclusive.
+    /// After generation, a log entry is written to indicate that house numbers have been generated.
+    /// </remarks>
+    /// <example>
+    /// <code>
+    /// var houseNumbers = GenerateHouseNumber(5);
+    /// // Possible output: ["12", "89", "7", "42", "230"]
+    /// </code>
+    /// </example>
     private List<string> GenerateHouseNumber(int quant)
     {
+        // Stores generated house numbers ready to be returned
         List<string> houseNumber = new List<string>();
 
+        // Random number generator to generate the random numbers
         Random rnd = new Random();
 
+        // Loop iterates upto the user's specified quantity, generating a new house number each time
         for (int i = 0; i < quant; i++)
         {
+            // Adds the generated house number to the houseNumber local variable
             houseNumber.Add(rnd.Next(1, 230).ToString());
         } // End for
 
+        // Log output to mark when the house numbers have been generated
         _debug.Write("House Numbers have been generated", LogLevel.Info);
+        
+        // Returns the list to the caller in GenerateAddress method
         return houseNumber;
     } // End GenerateHouseNumber
 
