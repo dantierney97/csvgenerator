@@ -16,6 +16,7 @@ public class NameGenerator : INameGenerator
 
     private readonly IDebugLog _debug;
     private readonly IServiceProvider _serviceProvider;
+    private readonly Object _lockObject = new();
     public NameGenerator(IDebugLog debug, IServiceProvider serviceProvider)
     {
         _debug = debug;
@@ -28,7 +29,10 @@ public class NameGenerator : INameGenerator
     // Allows other methods to get the list of names
     public List<string> GetNames()
     {
-        return _names;
+        lock (_lockObject) // Lock _names when system attemptsd to return _names
+        {
+            return _names;
+        } // End of lock block
     } // End of getNames
 
     // Method will generate names based on quantity specified by user
@@ -77,9 +81,12 @@ public class NameGenerator : INameGenerator
             
             // merge two names together for the full name
             var fullname = forename + " " + surname;
-            
-            // Add name to names list
-            _names.Add(fullname);
+
+            lock (_lockObject) // Locks _names whilst adding to the list
+            {
+                // Add name to names list
+                _names.Add(fullname);
+            } // End of lock block
         } // End of For Loop
         
         // Confirm to user the number of names that have been generated
