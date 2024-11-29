@@ -93,7 +93,7 @@ public class NameGenerator : INameGenerator
         _debug.Write($"The number of names generated is: {_names.Count}", LogLevel.Info);
         
         // New CheckDuplicates created
-        var d = _serviceProvider.GetService<CheckDuplicates>();
+        var d = _serviceProvider.GetRequiredService<CheckDuplicates>();
         
         // Counts duplicate names
         int duplicates = d.CountDuplicates(_names);

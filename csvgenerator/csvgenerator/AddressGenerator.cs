@@ -31,6 +31,7 @@ public class AddressGenerator : IAddressGenerator
 
     private readonly IDebugLog _debug;
     private readonly IServiceProvider _serviceProvider;
+    private readonly Object _lock = new();
 
     public AddressGenerator(IDebugLog debug, IServiceProvider serviceProvider)
     {
@@ -48,27 +49,42 @@ public class AddressGenerator : IAddressGenerator
     // Get methods to allow other classes to use the address segments
     public List<string> GetHouseNumber()
     {
-        return _houseNumber;
+        lock (_lock) // Makes returning _houseNumber Thread Safe
+        {
+            return _houseNumber;
+        }
     }
 
     public List<string> GetStreetName()
     {
-        return _streetName;
+        lock(_lock) // Makes returning _streetName Thread Safe
+        {
+            return _streetName;
+        }
     }
 
     public List<string> GetCity()
     {
-        return _city;
+        lock (_lock) // Makes returning _city Thread Safe
+        {
+            return _city;
+        }
     }
 
     public List<string> GetCounty()
     {
-        return _county;
+        lock (_lock) // Makes returning _county Thread Safe
+        {
+            return _county;
+        }
     }
 
     public List<string> GetPostcode()
     {
-        return _postcode;
+        lock(_lock) // Makes returning _postcode Thread Safe
+        {
+            return _postcode;
+        }
     }
 
     // Method called by external classes to generate an address
@@ -78,11 +94,30 @@ public class AddressGenerator : IAddressGenerator
         Stopwatch timer = new Stopwatch();
         timer.Start();
 
-        _houseNumber = GenerateHouseNumber(quant);
-        _streetName = GenerateStreetName(quant);
-        _city = GenerateCity(quant);
-        _county = GenerateCounty(quant);
-        _postcode = GeneratePostcode(quant);
+        lock (_lock) // Locks _houseNumber while generating data
+        {
+            _houseNumber = GenerateHouseNumber(quant);
+        }
+
+        lock (_lock) // Locks _streetNames while generating data
+        {
+            _streetName = GenerateStreetName(quant);
+        }
+
+        lock (_lock) // Locks _city while generating data
+        {
+            _city = GenerateCity(quant);
+        }
+
+        lock (_lock) // Locks _county while generating data
+        {
+            _county = GenerateCounty(quant);
+        }
+
+        lock (_lock) // Locks _postcode while generating data
+        {
+            _postcode = GeneratePostcode(quant);
+        }
 
         timer.Stop();
         TimeSpan speed = timer.Elapsed;
