@@ -20,20 +20,43 @@ public class DataCompiler
     } // End Constructor
 
     private List<List<string>> data = new();
+    private readonly Object _lock = new();
 
     public void GatherGeneratedData()
     {
         try
         {
+            // Series of lock blocks to help with thread safety
+            // Blocks done individually to prevent locking out the list for an extended period
+            lock (_lock)
+            {
+                data.Add(_nameGenerator.GetNames());
+            }
 
-            data.Add(_nameGenerator.GetNames());
-            
-            
-            data.Add(_addressGenerator.GetHouseNumber());
-            data.Add(_addressGenerator.GetStreetName());
-            data.Add(_addressGenerator.GetCity());
-            data.Add(_addressGenerator.GetCounty());
-            data.Add(_addressGenerator.GetPostcode());
+            lock (_lock)
+            {
+                data.Add(_addressGenerator.GetHouseNumber());
+            }
+
+            lock (_lock)
+            {
+                data.Add(_addressGenerator.GetStreetName());
+            }
+
+            lock (_lock)
+            {
+                data.Add(_addressGenerator.GetStreetName());
+            }
+
+            lock (_lock)
+            {
+                data.Add(_addressGenerator.GetCounty());
+            }
+
+            lock (_lock)
+            {
+                data.Add(_addressGenerator.GetPostcode());
+            }
         }
         catch (Exception e)
         {
