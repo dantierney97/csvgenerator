@@ -1,15 +1,8 @@
 using System.Diagnostics;
 using Microsoft.Extensions.DependencyInjection;
+using csvgenerator.Abstractions;
 
 namespace csvgenerator.Services;
-
-public interface INameGenerator
-{
-    
-    void GenerateNames(int quantity);
-    
-    List<string> GetNames();
-}
 
 public class NameGenerator : INameGenerator
 {
