@@ -109,36 +109,20 @@ public class AddressGenerator : IAddressGenerator
         Stopwatch timer = new Stopwatch();
         timer.Start();
 
-        lock (_lock) // Locks _houseNumber while generating data
+        lock (_lock) // Locks all lists whilst the data is generating, making all data generated thread safe
         {
             _houseNumber = GenerateHouseNumber(quant);
-        }
-
-        lock (_lock) // Locks _streetNames while generating data
-        {
             _streetName = GenerateStreetName(quant);
-        }
-
-        lock (_lock) // Locks _city while generating data
-        {
             _city = GenerateCity(quant);
-        }
-
-        lock (_lock) // Locks _county while generating data
-        {
             _county = GenerateCounty(quant);
-        }
-
-        lock (_lock) // Locks _postcode while generating data
-        {
             _postcode = GeneratePostcode(quant);
-        }
+        } // End of Lock
 
         timer.Stop();
         TimeSpan speed = timer.Elapsed;
         _debug.Write($"Addresses created successfully!", LogLevel.Info);
         _debug.Write($"Time taken: {speed.Milliseconds}ms", LogLevel.Info);
-    }
+    } // End of Generate Address
 
     /// <summary>
     /// Generates a list of house numbers as strings.
