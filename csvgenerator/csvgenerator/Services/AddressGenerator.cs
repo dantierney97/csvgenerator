@@ -26,6 +26,7 @@ public class AddressGenerator : IAddressGenerator
     private List<string> _postcode = new List<string>();
 
     // Get methods to allow other classes to use the address segments
+    /// <inheritdoc />
     public List<string> GetHouseNumber()
     {
         lock (_lock) // Makes returning _houseNumber Thread Safe
@@ -33,7 +34,8 @@ public class AddressGenerator : IAddressGenerator
             return _houseNumber;
         }
     }
-
+    
+    /// <inheritdoc />
     public List<string> GetStreetName()
     {
         lock(_lock) // Makes returning _streetName Thread Safe
@@ -42,6 +44,7 @@ public class AddressGenerator : IAddressGenerator
         }
     }
 
+    /// <inheritdoc />
     public List<string> GetCity()
     {
         lock (_lock) // Makes returning _city Thread Safe
@@ -50,6 +53,7 @@ public class AddressGenerator : IAddressGenerator
         }
     }
 
+    /// <inheritdoc />
     public List<string> GetCounty()
     {
         lock (_lock) // Makes returning _county Thread Safe
@@ -58,6 +62,7 @@ public class AddressGenerator : IAddressGenerator
         }
     }
 
+    /// <inheritdoc />
     public List<string> GetPostcode()
     {
         lock(_lock) // Makes returning _postcode Thread Safe
