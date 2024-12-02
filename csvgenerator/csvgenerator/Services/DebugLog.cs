@@ -1,18 +1,7 @@
 using System.Diagnostics;
+using csvgenerator.Abstractions;
 
 namespace csvgenerator.Services;
-
-// Enum holds log levels for use by the logger
-public enum LogLevel
-{
-    Info, Warning, Error
-} // End of enum LogLevel
-
-// Interface allows commands to be accessible by other classes in the apllication
-public interface IDebugLog
-{
-    void Write(string message, LogLevel level);
-} // End of interface IDebugLog
 
 // DebugLog class that handles logging debug information
 public class DebugLog : IDebugLog
