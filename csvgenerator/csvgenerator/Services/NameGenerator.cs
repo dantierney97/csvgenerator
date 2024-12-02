@@ -1,7 +1,7 @@
 using System.Diagnostics;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace csvgenerator;
+namespace csvgenerator.Services;
 
 public interface INameGenerator
 {

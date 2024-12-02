@@ -1,6 +1,6 @@
 using System.Diagnostics;
 
-namespace csvgenerator;
+namespace csvgenerator.Services;
 
 // Enum holds log levels for use by the logger
 public enum LogLevel

@@ -1,7 +1,7 @@
 using csvgenerator.Abstractions;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace csvgenerator;
+namespace csvgenerator.Services;
 
 public class DataCompiler
 {

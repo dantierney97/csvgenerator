@@ -1,4 +1,4 @@
-namespace csvgenerator;
+namespace csvgenerator.Services;
 
 public class UserInput
 {
