@@ -106,7 +106,7 @@ public class AddressGenerator : IAddressGenerator
     /// </remarks>
     /// <example>
     /// <code>
-    /// var houseNumbers = GenerateHouseNumber(5);
+    /// List{string} houseNumbers = GenerateHouseNumber(5);
     /// // Possible output: ["12", "89", "7", "42", "230"]
     /// </code>
     /// </example>
@@ -132,7 +132,22 @@ public class AddressGenerator : IAddressGenerator
         return houseNumber;
     } // End GenerateHouseNumber
 
-    // Method generates a list of street names
+    /// <summary>
+    /// Generates a list of street names as strings.
+    /// </summary>
+    /// <param name="quant">The quantity of street names to generate.</param>
+    /// <returns>A list of street names as strings, each representing a random number between 1 and 230.</returns>
+    /// <remarks>
+    /// This method uses a <see cref="Random"/> instance to generate street names.
+    /// The random selects a number from 0 to either StreetPrefixes.Length or StreetSuffixes.Length
+    /// After generation, a log entry is written to indicate that street names have been generated.
+    /// </remarks>
+    /// <example>
+    /// <code>
+    /// List{string} streetNames = GenerateStreetName(5);
+    /// // Possible output: ["Church Street", "Station Street", "Cambridge Close", "Abbey Drive", "Clarence Way"]
+    /// </code>
+    /// </example>
     private List<string> GenerateStreetName(int quant)
     {
         // Local list to store generated information
@@ -171,7 +186,13 @@ public class AddressGenerator : IAddressGenerator
         return streetName;
     } // End of GenerateStreetName
 
-    // Array of street prefixes
+    /// <summary>
+    /// An array of common street name prefixes used to generate street names
+    /// </summary>
+    /// <remarks>
+    /// This array will be used in conjuction with the StreetSuffixes array to return a full street name during
+    /// generation.
+    /// </remarks>
     private static readonly string[] StreetPrefixes =
     [
         "High", "Church", "Station", "Park", "Victoria", "King",
@@ -184,7 +205,14 @@ public class AddressGenerator : IAddressGenerator
         "Willow", "Saxon", "Derby", "Lancaster", "Kensington", "Hampstead"
     ];
 
-    // Array of street suffixes
+    /// <summary>
+    /// An array of common street suffixes used to create full street names.
+    /// </summary>
+    /// <remarks>
+    /// This array will be used with StreetPrefixes to generate full street names. Some Prefixes appear several times
+    /// to add weight to certain names that would increase their appearance during generation. This has been implemented
+    /// to more closely reflect real world data.
+    /// </remarks>
     private static readonly string[] StreetSuffixes =
     [
         // Suffixes with high weight
